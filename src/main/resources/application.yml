@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: bank_demo
+  jmx:
+    enabled: false
+
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;databaseName=bank_demo;encrypt=true;trustServerCertificate=true;useUnicode=true&characterEncoding=utf-8
+    username: SA
+    password: "@Mssql123"
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    generate-ddl: false
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        legacy_limit_handler: true
+
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+
+
+server:
+  servlet:
+    context-path: /vnpay
+
+jwt:
+  signerKey: Spm7HjimespbaEr1r4CjEwowU1Vw+Y7I/F2VaeMvem0GAIq28OZteLHRi4HdseqJ
+
+banks:
+  banks:
+  - bankCode: "01101014"
+    privateKey: 09742344
+    ips: []
+
+  - bankCode: "79320001"
+    privateKey: 08062002
+    ips: []
+
+
