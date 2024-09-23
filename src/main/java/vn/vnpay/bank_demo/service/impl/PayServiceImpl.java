@@ -7,6 +7,7 @@ import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import vn.vnpay.bank_demo.common.enums.BankCode;
+import vn.vnpay.bank_demo.common.enums.BankResponseCode;
 import vn.vnpay.bank_demo.common.exception.BankCodeException;
 import vn.vnpay.bank_demo.common.exception.BankException;
 import vn.vnpay.bank_demo.common.exception.CheckSumException;
@@ -82,7 +83,7 @@ public class PayServiceImpl implements PayService {
             }
         }
         if (!exist) {
-            throw new BankCodeException("bankCode Failed");
+            throw new BankException(BankResponseCode.BANK_CODE_ERROR, "bankCode Failed");
         }
     }
 
@@ -102,7 +103,7 @@ public class PayServiceImpl implements PayService {
         String calculatedCheckSum = calculateCheckSum(input);
 
         if (!calculatedCheckSum.equals(request.getCheckSum())) {
-            throw new CheckSumException("checkSum failed");
+            throw new BankException(BankResponseCode.CHECKSUM_ERROR, "checkSum failed");
         }
     }
     // Hàm để set dữ liệu vào Redis
@@ -111,7 +112,8 @@ public class PayServiceImpl implements PayService {
         try {
             redisTemplate.opsForHash().put(bankCode, tokenKey, jsonData);
         } catch (Exception e) {
-            throw new BankException(e.getMessage());
+//            throw new BankException(e.getMessage());
+            e.getMessage();
         }
     }
 

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import vn.vnpay.bank_demo.common.enums.BankResponseCode;
 import vn.vnpay.bank_demo.common.exception.BankException;
 import vn.vnpay.bank_demo.model.dto.auth.request.AuthenticationReqDTO;
 import vn.vnpay.bank_demo.model.dto.auth.response.AuthenticationResDto;
@@ -34,14 +35,14 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public AuthenticationResDto authenticate(AuthenticationReqDTO authenticationReqDTO) {
         Users users = userRepository.findByUserName(authenticationReqDTO.getUserName())
-                .orElseThrow(() -> new BankException("Not found user with username = " + authenticationReqDTO.getUserName()));
+                .orElseThrow(() -> new BankException(BankResponseCode.SQL_ERROR,"Not found user with username = " + authenticationReqDTO.getUserName()));
 
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
 
         boolean authenticated = passwordEncoder.matches(authenticationReqDTO.getPassword(), users.getPassword());
 
         if (!authenticated) {
-            throw new BankException("Không được xác thực");
+            throw new BankException(BankResponseCode.SQL_ERROR, "Không được xác thực");
         }
 
         String token = generateToken(authenticationReqDTO.getUserName());
