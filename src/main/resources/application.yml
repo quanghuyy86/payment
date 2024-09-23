@@ -1,8 +1,8 @@
 spring:
   application:
     name: bank_demo
-  jmx:
-    enabled: false
+#  jmx:
+#    enabled: false
 
   datasource:
     url: jdbc:sqlserver://localhost:1433;databaseName=bank_demo;encrypt=true;trustServerCertificate=true;useUnicode=true&characterEncoding=utf-8
