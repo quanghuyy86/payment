@@ -1,11 +1,15 @@
 package vn.vnpay.bank_demo.service.impl;
 
+import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
 import vn.vnpay.bank_demo.common.enums.BankCode;
+import vn.vnpay.bank_demo.common.enums.BankResponseCode;
 import vn.vnpay.bank_demo.common.exception.BankCodeException;
+import vn.vnpay.bank_demo.common.exception.BankException;
 import vn.vnpay.bank_demo.common.exception.CheckSumException;
 import vn.vnpay.bank_demo.config.BankProperties;
 import vn.vnpay.bank_demo.model.dto.payment.request.CheckSumRequestDTO;
@@ -16,16 +20,18 @@ import vn.vnpay.bank_demo.service.PayService;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import static vn.vnpay.bank_demo.util.CheckSumUtil.calculateCheckSum;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class PayServiceImpl implements PayService {
 
     private final PaymentRepository paymentRepository;
     private final BankProperties bankProperties;
-    private final JedisPool jedisPool;
+    private final RedisTemplate<String, Object> redisTemplate;
 
     @Override
     public void createPayment(PaymentRequestDTO request) {
@@ -38,59 +44,35 @@ public class PayServiceImpl implements PayService {
         //Set Redis pool
         setRedis(request);
 
-        Payment payment = Payment.builder()
-                .tokenKey(request.getTokenKey())
-                .apiId(request.getApiId())
-                .mobile(request.getMobile())
-                .bankCode(request.getBankCode())
-                .accountNo(request.getAccountNo())
-                .payDate(request.getPayDate())
-                .additionalData(request.getAdditionalData())
-                .debitAmount(request.getDebitAmount())
-                .respDesc(request.getRespDesc())
-                .respCode(request.getRespCode())
-                .traceTransfer(request.getTraceTransfer())
-                .messageType(request.getMessageType())
-                .checkSum(request.getCheckSum())
-                .orderCode(request.getOrderCode())
-                .userName(request.getUserName())
-                .realAmount(request.getRealAmount())
-                .promotionCode(request.getPromotionCode())
-                .build();
-        paymentRepository.save(payment);
+//        Payment payment = Payment.builder()
+//                .tokenKey(request.getTokenKey())
+//                .apiId(request.getApiId())
+//                .mobile(request.getMobile())
+//                .bankCode(request.getBankCode())
+//                .accountNo(request.getAccountNo())
+//                .payDate(request.getPayDate())
+//                .additionalData(request.getAdditionalData())
+//                .debitAmount(request.getDebitAmount())
+//                .respDesc(request.getRespDesc())
+//                .respCode(request.getRespCode())
+//                .traceTransfer(request.getTraceTransfer())
+//                .messageType(request.getMessageType())
+//                .checkSum(request.getCheckSum())
+//                .orderCode(request.getOrderCode())
+//                .userName(request.getUserName())
+//                .realAmount(request.getRealAmount())
+//                .promotionCode(request.getPromotionCode())
+//                .build();
+//        paymentRepository.save(payment);
 
     }
 
     private void setRedis(PaymentRequestDTO request) {
-        Map<String, String> dataMap = new HashMap<>();
-        dataMap.put("tokenKey", request.getTokenKey());
-        dataMap.put("apiId", request.getApiId());
-        dataMap.put("mobile", request.getMobile());
-        dataMap.put("bankCode", request.getBankCode());
-        dataMap.put("accountNo", request.getAccountNo());
-        dataMap.put("payDate", String.valueOf(request.getPayDate()));
-        dataMap.put("additionalData", request.getAdditionalData());
-        dataMap.put("debitAmount", String.valueOf(request.getDebitAmount()));
-        dataMap.put("respCode", request.getRespCode());
-        dataMap.put("respDesc", request.getRespDesc());
-        dataMap.put("traceTransfer", request.getTraceTransfer());
-        dataMap.put("messageType", request.getMessageType());
-        dataMap.put("checkSum", request.getCheckSum());
-        dataMap.put("orderCode", request.getOrderCode());
-        dataMap.put("userName", request.getUserName());
-        dataMap.put("realAmount", String.valueOf(request.getRealAmount()));
-        dataMap.put("promotionCode", request.getPromotionCode());
-
-        setDataToRedis(request.getBankCode(), request.getTokenKey(),dataMap);
+        Gson gson = new Gson();
+        String dataReq = gson.toJson(request);
+        setDataToRedis(request.getBankCode(), request.getTokenKey(),dataReq);
     }
 
-//    private void validateBankCode(PaymentRequestDTO request) {
-//        boolean exist = bankProperties.getBanks().stream()
-//                .anyMatch(bankConfig -> bankConfig.getBankCode().equals(request.getBankCode()));
-//        if (!exist) {
-//            throw new BankCodeException("bankCode Failed");
-//        }
-//    }
 
     private void validateBankCode(PaymentRequestDTO request) {
         boolean exist = false;
@@ -101,7 +83,7 @@ public class PayServiceImpl implements PayService {
             }
         }
         if (!exist) {
-            throw new BankCodeException("bankCode Failed");
+            throw new BankException(BankResponseCode.BANK_CODE_ERROR, "bankCode Failed");
         }
     }
 
@@ -121,15 +103,17 @@ public class PayServiceImpl implements PayService {
         String calculatedCheckSum = calculateCheckSum(input);
 
         if (!calculatedCheckSum.equals(request.getCheckSum())) {
-            throw new CheckSumException("checkSum failed");
+            throw new BankException(BankResponseCode.CHECKSUM_ERROR, "checkSum failed");
         }
     }
     // Hàm để set dữ liệu vào Redis
-    private void setDataToRedis(String bankCode, String tokenKey, Map<String, String> jsonData) {
-        try (Jedis jedis = jedisPool.getResource()) {
-            jedis.hset(bankCode, tokenKey, jsonData.toString());
+    //TODO: tìm hiểu try catch resource
+    private void setDataToRedis(String bankCode, String tokenKey, String jsonData) {
+        try {
+            redisTemplate.opsForHash().put(bankCode, tokenKey, jsonData);
         } catch (Exception e) {
-            e.printStackTrace();
+//            throw new BankException(e.getMessage());
+            e.getMessage();
         }
     }
 
