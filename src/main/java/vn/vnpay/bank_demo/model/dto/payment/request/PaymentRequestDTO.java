@@ -31,7 +31,7 @@ public class PaymentRequestDTO {
     private String accountNo;
 
     @NotNull(message = "Pay date cannot be null")
-    private LocalDateTime payDate;
+    private String payDate;
 
     @NotBlank(message = "Field additionalData cannot be null, empty, or blank")
     private String additionalData;
