@@ -35,6 +35,7 @@ public class PayServiceImpl implements PayService {
 
     @Override
     public void createPayment(PaymentRequestDTO request) {
+        log.info("Begin create-payment: PaymentRequestDTO{}", request);
         //Kiểm tra checkSum
         validateCheckSum(request);
 
@@ -43,6 +44,7 @@ public class PayServiceImpl implements PayService {
 
         //Set Redis pool
         setRedis(request);
+        log.info("End create-payment: Success");
 
 //        Payment payment = Payment.builder()
 //                .tokenKey(request.getTokenKey())
@@ -68,13 +70,16 @@ public class PayServiceImpl implements PayService {
     }
 
     private void setRedis(PaymentRequestDTO request) {
+        log.info("- Start set data to redis");
         Gson gson = new Gson();
         String dataReq = gson.toJson(request);
         setDataToRedis(request.getBankCode(), request.getTokenKey(),dataReq);
+        log.info("- End set data to redis: Success");
     }
 
 
     private void validateBankCode(PaymentRequestDTO request) {
+        log.info("- Start validate BankCode");
         boolean exist = false;
         for (BankProperties.BankConfig bankConfig : bankProperties.getBanks()) {
             if (bankConfig.getBankCode().equals(request.getBankCode())) {
@@ -83,8 +88,10 @@ public class PayServiceImpl implements PayService {
             }
         }
         if (!exist) {
+            log.warn("-- Error code 02: BankCode Failed");
             throw new BankException(BankResponseCode.BANK_CODE_ERROR, "bankCode Failed");
         }
+        log.info("- End validate BankCode: Success");
     }
 
     @Override
@@ -96,6 +103,7 @@ public class PayServiceImpl implements PayService {
     }
 
     private static void validateCheckSum(PaymentRequestDTO request) {
+        log.info("- Start validate checksum");
         String input = request.getMobile() + request.getBankCode() + request.getAccountNo()
                 + request.getPayDate() + request.getDebitAmount() + request.getRespCode()
                 + request.getTraceTransfer() + request.getMessageType() + BankCode.VNPAY.getBankCode();
@@ -103,8 +111,10 @@ public class PayServiceImpl implements PayService {
         String calculatedCheckSum = calculateCheckSum(input);
 
         if (!calculatedCheckSum.equals(request.getCheckSum())) {
+            log.warn("-- Error code 03: Checksum Failed");
             throw new BankException(BankResponseCode.CHECKSUM_ERROR, "checkSum failed");
         }
+        log.info("- End validate checksum: Success");
     }
     // Hàm để set dữ liệu vào Redis
     //TODO: tìm hiểu try catch resource
@@ -112,8 +122,9 @@ public class PayServiceImpl implements PayService {
         try {
             redisTemplate.opsForHash().put(bankCode, tokenKey, jsonData);
         } catch (Exception e) {
-//            throw new BankException(e.getMessage());
-            e.getMessage();
+            log.error("-- Error while trying to save data to Redis for bankCode: {}, tokenKey: {}. Error: {}", bankCode, tokenKey, e.getMessage(), e);
+
+            throw new BankException(BankResponseCode.LOST_CONNECTION_TO_REDIS, "Lost connection to redis");
         }
     }
 
