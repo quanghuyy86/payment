@@ -3,24 +3,16 @@ package vn.vnpay.bank_demo.service.impl;
 import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import vn.vnpay.bank_demo.common.enums.BankCode;
 import vn.vnpay.bank_demo.common.enums.BankResponseCode;
-import vn.vnpay.bank_demo.common.exception.BankCodeException;
 import vn.vnpay.bank_demo.common.exception.BankException;
-import vn.vnpay.bank_demo.common.exception.CheckSumException;
 import vn.vnpay.bank_demo.config.BankProperties;
 import vn.vnpay.bank_demo.model.dto.payment.request.CheckSumRequestDTO;
 import vn.vnpay.bank_demo.model.dto.payment.request.PaymentRequestDTO;
-import vn.vnpay.bank_demo.model.entity.Payment;
 import vn.vnpay.bank_demo.repository.PaymentRepository;
 import vn.vnpay.bank_demo.service.PayService;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
 
 import static vn.vnpay.bank_demo.util.CheckSumUtil.calculateCheckSum;
 
@@ -35,7 +27,7 @@ public class PayServiceImpl implements PayService {
 
     @Override
     public void createPayment(PaymentRequestDTO request) {
-        log.info("Begin create-payment: PaymentRequestDTO{}", request);
+        log.info("Begin create-payment: {}", request);
         //Kiểm tra checkSum
         validateCheckSum(request);
 
@@ -70,16 +62,16 @@ public class PayServiceImpl implements PayService {
     }
 
     private void setRedis(PaymentRequestDTO request) {
-        log.info("- Start set data to redis");
+        log.info("Start set data to redis");
         Gson gson = new Gson();
         String dataReq = gson.toJson(request);
         setDataToRedis(request.getBankCode(), request.getTokenKey(),dataReq);
-        log.info("- End set data to redis: Success");
+        log.info("End set data to redis: Success");
     }
 
 
     private void validateBankCode(PaymentRequestDTO request) {
-        log.info("- Start validate BankCode");
+        log.info("Start validate BankCode");
         boolean exist = false;
         for (BankProperties.BankConfig bankConfig : bankProperties.getBanks()) {
             if (bankConfig.getBankCode().equals(request.getBankCode())) {
@@ -88,10 +80,10 @@ public class PayServiceImpl implements PayService {
             }
         }
         if (!exist) {
-            log.warn("-- Error code 02: BankCode Failed");
+            log.info("Error code 02: BankCode Failed");
             throw new BankException(BankResponseCode.BANK_CODE_ERROR, "bankCode Failed");
         }
-        log.info("- End validate BankCode: Success");
+        log.info("End validate BankCode: Success");
     }
 
     @Override
@@ -103,18 +95,18 @@ public class PayServiceImpl implements PayService {
     }
 
     private static void validateCheckSum(PaymentRequestDTO request) {
-        log.info("- Start validate checksum");
+        log.info("Start validate checksum");
         String input = request.getMobile() + request.getBankCode() + request.getAccountNo()
                 + request.getPayDate() + request.getDebitAmount() + request.getRespCode()
                 + request.getTraceTransfer() + request.getMessageType() + BankCode.VNPAY.getBankCode();
 
         String calculatedCheckSum = calculateCheckSum(input);
-
+        log.info("Checksum request: " + request.getCheckSum());
         if (!calculatedCheckSum.equals(request.getCheckSum())) {
-            log.warn("-- Error code 03: Checksum Failed");
+            log.warn("Error code 03: Checksum Failed");
             throw new BankException(BankResponseCode.CHECKSUM_ERROR, "checkSum failed");
         }
-        log.info("- End validate checksum: Success");
+        log.info("End validate checksum: Success");
     }
     // Hàm để set dữ liệu vào Redis
     //TODO: tìm hiểu try catch resource
@@ -122,7 +114,7 @@ public class PayServiceImpl implements PayService {
         try {
             redisTemplate.opsForHash().put(bankCode, tokenKey, jsonData);
         } catch (Exception e) {
-            log.error("-- Error while trying to save data to Redis for bankCode: {}, tokenKey: {}. Error: {}", bankCode, tokenKey, e.getMessage(), e);
+            log.error("Error while trying to save data to Redis for bankCode: {}, tokenKey: {}. Error: {}", bankCode, tokenKey, e.getMessage(), e);
 
             throw new BankException(BankResponseCode.LOST_CONNECTION_TO_REDIS, "Lost connection to redis");
         }
