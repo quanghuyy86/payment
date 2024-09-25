@@ -65,4 +65,27 @@ public class PaymentRequestDTO {
 
     @NotBlank(message = "Field promotionCode cannot be null, empty, or blank")
     private String promotionCode;
+
+    @Override
+    public String toString() {
+        return "PaymentRequestDTO{" +
+                "tokenKey='" + tokenKey + '\'' +
+                ", apiId='" + apiId + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", bankCode='" + bankCode + '\'' +
+                ", accountNo='" + accountNo + '\'' +
+                ", payDate='" + payDate + '\'' +
+                ", additionalData='" + additionalData + '\'' +
+                ", debitAmount=" + debitAmount +
+                ", respCode='" + respCode + '\'' +
+                ", respDesc='" + respDesc + '\'' +
+                ", traceTransfer='" + traceTransfer + '\'' +
+                ", messageType='" + messageType + '\'' +
+                ", checkSum='" + checkSum + '\'' +
+                ", orderCode='" + orderCode + '\'' +
+                ", userName='" + userName + '\'' +
+                ", realAmount=" + realAmount +
+                ", promotionCode='" + promotionCode + '\'' +
+                '}';
+    }
 }

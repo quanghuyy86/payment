@@ -8,7 +8,9 @@ public enum BankResponseCode {
     FIELD_ERROR("01", "Field_error"),
     BANK_CODE_ERROR("02", "Bank code error"),
     CHECKSUM_ERROR("03", "CheckSum error"),
-    BAD_GATEWAY_ERROR("400", "BAD_GATEWAY_ERROR");
+    LOST_CONNECTION_TO_REDIS("04", "Lost connection to redis"),
+    SQL_ERROR("05", "SQL error"),
+    BAD_GATEWAY_ERROR("99", "Internal server error");
 
     private final String code;
     private final String message;

@@ -42,7 +42,7 @@ public class BankResulMessage implements Serializable {
         this.responseTime = getCurrentTime();
         this.checkSum = CheckSumUtil.calculateCheckSum(
                 code + message + responseId + responseTime + BankCode.VNPAY.getBankCode()
-        );;
+        );
     }
 
     public static BankResulMessage success() {
@@ -55,9 +55,6 @@ public class BankResulMessage implements Serializable {
         );
         return new BankResulMessage(code, message, responseId, responseTime, checkSum);
     }
-
-
-
 
     // Sinh UUID ngẫu nhiên cho responseId
     private static String generateResponseId() {
