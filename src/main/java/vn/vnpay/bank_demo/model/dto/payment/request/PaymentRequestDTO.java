@@ -27,6 +27,9 @@ public class PaymentRequestDTO {
     @NotBlank(message = "Field bankCode cannot be null, empty, or blank")
     private String bankCode;
 
+    @NotBlank(message = "Field privateKey cannot be null, empty, or blank")
+    private String privateKey;
+
     @NotBlank(message = "Field accountNo cannot be null, empty, or blank")
     private String accountNo;
 

@@ -31,15 +31,9 @@ server:
 
 jwt:
   signerKey: Spm7HjimespbaEr1r4CjEwowU1Vw+Y7I/F2VaeMvem0GAIq28OZteLHRi4HdseqJ
-#TODO bỏ 1 banks hoặc tạo 1 file xml ghi 1 list bank
-banks:
-  banks:
-  - bankCode: "01101014"
-    privateKey: 09742344
-    ips: []
 
-  - bankCode: "79320001"
-    privateKey: 08062002
-    ips: []
+bank:
+  file:
+    path: src/main/resources/bankcode.xml
 
 

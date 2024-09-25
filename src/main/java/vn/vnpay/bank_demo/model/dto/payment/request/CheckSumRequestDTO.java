@@ -12,6 +12,8 @@ public class CheckSumRequestDTO {
     @NotBlank(message = "Field not null")
     private String bankCode;
     @NotBlank(message = "Field not null")
+    private String privateKey;
+    @NotBlank(message = "Field not null")
     private String accountNo;
     @NotBlank(message = "Field not null")
     private String payDate;
