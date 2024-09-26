@@ -17,6 +17,7 @@ import vn.vnpay.bank_demo.model.dto.auth.response.AuthenticationResDto;
 import vn.vnpay.bank_demo.model.entity.Users;
 import vn.vnpay.bank_demo.repository.UsersRepository;
 import vn.vnpay.bank_demo.service.AuthenticationService;
+import vn.vnpay.bank_demo.util.TokenKeyUtil;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
@@ -51,6 +52,11 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 .token(token)
                 .authenticated(true)
                 .build();
+    }
+
+    @Override
+    public String createTokenKey() {
+        return TokenKeyUtil.generateTokenKey();
     }
 
     private String generateToken(String userName) {

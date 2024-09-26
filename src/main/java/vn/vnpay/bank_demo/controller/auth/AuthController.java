@@ -22,4 +22,10 @@ public class AuthController {
         AuthenticationResDto result = authenticationService.authenticate(authenticationReqDTO);
         return ResponseEntity.ok(result);
     }
+
+    @PostMapping("/token-key")
+    public ResponseEntity<String> createTokenKey() {
+        String tokenKey = authenticationService.createTokenKey();
+        return ResponseEntity.ok(tokenKey);
+    }
 }
