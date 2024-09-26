@@ -1,0 +1,386 @@
+2024-09-26 09:27:56,734 alidator.internal.util.Version -             <clinit>:21   - INFO  - [] - HV000001: Hibernate Validator 8.0.1.Final
+2024-09-26 09:27:56,770 .bank_demo.BankDemoApplication -          logStarting:50   - INFO  - [] - Starting BankDemoApplication using Java 17.0.8.1 with PID 17532 (D:\VNPay\TTS\bank_demo\target\classes started by MSI in D:\VNPay\TTS\bank_demo)
+2024-09-26 09:27:56,771 .bank_demo.BankDemoApplication - ogStartupProfileInfo:654  - INFO  - [] - No active profile set, falling back to 1 default profile: "default"
+2024-09-26 09:27:57,486 epositoryConfigurationDelegate - ltipleStoresDetected:295  - INFO  - [] - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-09-26 09:27:57,487 epositoryConfigurationDelegate - gisterRepositoriesIn:143  - INFO  - [] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-26 09:27:57,627 epositoryConfigurationDelegate - gisterRepositoriesIn:211  - INFO  - [] - Finished Spring Data repository scanning in 130 ms. Found 2 JPA repository interfaces.
+2024-09-26 09:27:57,645 epositoryConfigurationDelegate - ltipleStoresDetected:295  - INFO  - [] - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-09-26 09:27:57,646 epositoryConfigurationDelegate - gisterRepositoriesIn:143  - INFO  - [] - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-09-26 09:27:57,660 yConfigurationExtensionSupport - tRepositoryCandidate:320  - INFO  - [] - Spring Data Redis - Could not safely identify store assignment for repository candidate interface vn.vnpay.bank_demo.repository.PaymentRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-26 09:27:57,661 yConfigurationExtensionSupport - tRepositoryCandidate:320  - INFO  - [] - Spring Data Redis - Could not safely identify store assignment for repository candidate interface vn.vnpay.bank_demo.repository.UsersRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-26 09:27:57,661 epositoryConfigurationDelegate - gisterRepositoriesIn:211  - INFO  - [] - Finished Spring Data repository scanning in 5 ms. Found 0 Redis repository interfaces.
+2024-09-26 09:27:58,093 mbedded.tomcat.TomcatWebServer -           initialize:111  - INFO  - [] - Tomcat initialized with port 8080 (http)
+2024-09-26 09:27:58,106 oyote.http11.Http11NioProtocol -                  log:173  - INFO  - [] - Initializing ProtocolHandler ["http-nio-8080"]
+2024-09-26 09:27:58,110 .catalina.core.StandardService -                  log:173  - INFO  - [] - Starting service [Tomcat]
+2024-09-26 09:27:58,110 e.catalina.core.StandardEngine -                  log:173  - INFO  - [] - Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-09-26 09:27:58,159 .[Tomcat].[localhost].[/vnpay] -                  log:173  - INFO  - [] - Initializing Spring embedded WebApplicationContext
+2024-09-26 09:27:58,159 letWebServerApplicationContext - ebApplicationContext:296  - INFO  - [] - Root WebApplicationContext: initialization completed in 1359 ms
+2024-09-26 09:27:58,341 te.jpa.internal.util.LogHelper - tenceUnitInformation:31   - INFO  - [] - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-26 09:27:58,400 org.hibernate.Version          -           logVersion:44   - INFO  - [] - HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-09-26 09:27:58,427 nternal.RegionFactoryInitiator -      initiateService:50   - INFO  - [] - HHH000026: Second-level cache disabled
+2024-09-26 09:27:58,660 unit.SpringPersistenceUnitInfo -       addTransformer:87   - INFO  - [] - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-26 09:27:58,688 zaxxer.hikari.HikariDataSource -        getConnection:109  - INFO  - [] - HikariPool-1 - Starting...
+2024-09-26 09:27:58,962 .zaxxer.hikari.pool.HikariPool -        checkFailFast:554  - INFO  - [] - HikariPool-1 - Added connection ConnectionID:1 ClientConnectionId: 13c4d713-5a13-4c2e-b62f-eb1ea7971337
+2024-09-26 09:27:58,964 zaxxer.hikari.HikariDataSource -        getConnection:122  - INFO  - [] - HikariPool-1 - Start completed.
+2024-09-26 09:27:59,662 .internal.JtaPlatformInitiator -      initiateService:59   - INFO  - [] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-26 09:27:59,664 tainerEntityManagerFactoryBean - EntityManagerFactory:437  - INFO  - [] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-26 09:28:00,281 figuration$JpaWebConfiguration - gerInViewInterceptor:236  - WARN  - [] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-26 09:28:00,469 tTemplateResolverConfiguration - mplateLocationExists:101  - WARN  - [] - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-09-26 09:28:00,577 oyote.http11.Http11NioProtocol -                  log:173  - INFO  - [] - Starting ProtocolHandler ["http-nio-8080"]
+2024-09-26 09:28:00,591 mbedded.tomcat.TomcatWebServer -                start:243  - INFO  - [] - Tomcat started on port 8080 (http) with context path '/vnpay'
+2024-09-26 09:28:00,598 .bank_demo.BankDemoApplication -           logStarted:56   - INFO  - [] - Started BankDemoApplication in 4.258 seconds (process running for 5.028)
+2024-09-26 09:29:06,565 tainerEntityManagerFactoryBean -              destroy:650  - INFO  - [] - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-26 09:29:06,567 zaxxer.hikari.HikariDataSource -                close:349  - INFO  - [] - HikariPool-1 - Shutdown initiated...
+2024-09-26 09:29:06,572 zaxxer.hikari.HikariDataSource -                close:351  - INFO  - [] - HikariPool-1 - Shutdown completed.
+2024-09-26 09:29:27,163 alidator.internal.util.Version -             <clinit>:21   - INFO  - [] - HV000001: Hibernate Validator 8.0.1.Final
+2024-09-26 09:29:27,189 .bank_demo.BankDemoApplication -          logStarting:50   - INFO  - [] - Starting BankDemoApplication using Java 17.0.8.1 with PID 12100 (D:\VNPay\TTS\bank_demo\target\classes started by MSI in D:\VNPay\TTS\bank_demo)
+2024-09-26 09:29:27,191 .bank_demo.BankDemoApplication - ogStartupProfileInfo:654  - INFO  - [] - No active profile set, falling back to 1 default profile: "default"
+2024-09-26 09:29:27,700 epositoryConfigurationDelegate - ltipleStoresDetected:295  - INFO  - [] - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-09-26 09:29:27,701 epositoryConfigurationDelegate - gisterRepositoriesIn:143  - INFO  - [] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-26 09:29:27,806 epositoryConfigurationDelegate - gisterRepositoriesIn:211  - INFO  - [] - Finished Spring Data repository scanning in 98 ms. Found 2 JPA repository interfaces.
+2024-09-26 09:29:27,816 epositoryConfigurationDelegate - ltipleStoresDetected:295  - INFO  - [] - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-09-26 09:29:27,817 epositoryConfigurationDelegate - gisterRepositoriesIn:143  - INFO  - [] - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-09-26 09:29:27,825 yConfigurationExtensionSupport - tRepositoryCandidate:320  - INFO  - [] - Spring Data Redis - Could not safely identify store assignment for repository candidate interface vn.vnpay.bank_demo.repository.PaymentRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-26 09:29:27,826 yConfigurationExtensionSupport - tRepositoryCandidate:320  - INFO  - [] - Spring Data Redis - Could not safely identify store assignment for repository candidate interface vn.vnpay.bank_demo.repository.UsersRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-26 09:29:27,826 epositoryConfigurationDelegate - gisterRepositoriesIn:211  - INFO  - [] - Finished Spring Data repository scanning in 4 ms. Found 0 Redis repository interfaces.
+2024-09-26 09:29:28,158 mbedded.tomcat.TomcatWebServer -           initialize:111  - INFO  - [] - Tomcat initialized with port 8080 (http)
+2024-09-26 09:29:28,164 oyote.http11.Http11NioProtocol -                  log:173  - INFO  - [] - Initializing ProtocolHandler ["http-nio-8080"]
+2024-09-26 09:29:28,167 .catalina.core.StandardService -                  log:173  - INFO  - [] - Starting service [Tomcat]
+2024-09-26 09:29:28,167 e.catalina.core.StandardEngine -                  log:173  - INFO  - [] - Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-09-26 09:29:28,217 .[Tomcat].[localhost].[/vnpay] -                  log:173  - INFO  - [] - Initializing Spring embedded WebApplicationContext
+2024-09-26 09:29:28,218 letWebServerApplicationContext - ebApplicationContext:296  - INFO  - [] - Root WebApplicationContext: initialization completed in 999 ms
+2024-09-26 09:29:28,349 te.jpa.internal.util.LogHelper - tenceUnitInformation:31   - INFO  - [] - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-26 09:29:28,384 org.hibernate.Version          -           logVersion:44   - INFO  - [] - HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-09-26 09:29:28,407 nternal.RegionFactoryInitiator -      initiateService:50   - INFO  - [] - HHH000026: Second-level cache disabled
+2024-09-26 09:29:28,586 unit.SpringPersistenceUnitInfo -       addTransformer:87   - INFO  - [] - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-26 09:29:28,605 zaxxer.hikari.HikariDataSource -        getConnection:109  - INFO  - [] - HikariPool-1 - Starting...
+2024-09-26 09:29:28,772 .zaxxer.hikari.pool.HikariPool -        checkFailFast:554  - INFO  - [] - HikariPool-1 - Added connection ConnectionID:1 ClientConnectionId: 728c4c0c-d1dd-4999-b614-f5926a08304a
+2024-09-26 09:29:28,773 zaxxer.hikari.HikariDataSource -        getConnection:122  - INFO  - [] - HikariPool-1 - Start completed.
+2024-09-26 09:29:29,374 .internal.JtaPlatformInitiator -      initiateService:59   - INFO  - [] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-26 09:29:29,377 tainerEntityManagerFactoryBean - EntityManagerFactory:437  - INFO  - [] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-26 09:29:29,855 figuration$JpaWebConfiguration - gerInViewInterceptor:236  - WARN  - [] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-26 09:29:30,031 tTemplateResolverConfiguration - mplateLocationExists:101  - WARN  - [] - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-09-26 09:29:30,125 oyote.http11.Http11NioProtocol -                  log:173  - INFO  - [] - Starting ProtocolHandler ["http-nio-8080"]
+2024-09-26 09:29:30,137 mbedded.tomcat.TomcatWebServer -                start:243  - INFO  - [] - Tomcat started on port 8080 (http) with context path '/vnpay'
+2024-09-26 09:29:30,144 .bank_demo.BankDemoApplication -           logStarted:56   - INFO  - [] - Started BankDemoApplication in 3.306 seconds (process running for 3.702)
+2024-09-26 09:29:44,220 .[Tomcat].[localhost].[/vnpay] -                  log:173  - INFO  - [] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-26 09:29:44,220 .web.servlet.DispatcherServlet -      initServletBean:532  - INFO  - [] - Initializing Servlet 'dispatcherServlet'
+2024-09-26 09:29:44,221 .web.servlet.DispatcherServlet -      initServletBean:554  - INFO  - [] - Completed initialization in 1 ms
+2024-09-26 09:29:44,343 mo.service.impl.PayServiceImpl -        createPayment:30   - INFO  - [] - Begin create-payment: {
+  "tokenKey": "eyJhbGciOiJIUzUxMiJ9",
+  "apiId": "restPayment",
+  "mobile": "0345225630",
+  "bankCode": "01234567",
+  "privateKey": "12345678",
+  "accountNo": "0001100014211002",
+  "payDate": "20230918124530",
+  "additionalData": "11",
+  "debitAmount": 11200,
+  "respCode": "00",
+  "respDesc": "SUCCESS",
+  "traceTransfer": "FT19310RH6P1",
+  "messageType": "1",
+  "checkSum": "f141f8116d07e1e6e1504c26d2e3e2f32699322e5f28482c8aa0cf561d23aa41",
+  "orderCode": "FT19310RH6P1",
+  "userName": "cntest001",
+  "realAmount": 11200,
+  "promotionCode": null,
+  "addValue": "{\"payMethod\":\"01\",\"payMethodMMS\":1}"
+}
+2024-09-26 09:29:44,344 mo.service.impl.PayServiceImpl -     validateBankCode:79   - INFO  - [] - Start validate BankCode
+2024-09-26 09:29:44,344 mo.service.impl.PayServiceImpl -     validateBankCode:86   - INFO  - [] - End validate BankCode: Success
+2024-09-26 09:29:44,344 mo.service.impl.PayServiceImpl -      checkPrivateKey:135  - INFO  - [] - privateKey belongs to bankCode
+2024-09-26 09:29:44,344 mo.service.impl.PayServiceImpl -     validateCheckSum:106  - INFO  - [] - Start validate checksum
+2024-09-26 09:29:44,347 ay.bank_demo.util.CheckSumUtil -    calculateCheckSum:26   - INFO  - [] - Checksum: f141f8116d07e1e6e1504c26d2e3e2f32699322e5f28482c8aa0cf561d23aa41
+2024-09-26 09:29:44,347 mo.service.impl.PayServiceImpl -     validateCheckSum:112  - INFO  - [] - Checksum request: f141f8116d07e1e6e1504c26d2e3e2f32699322e5f28482c8aa0cf561d23aa41
+2024-09-26 09:29:44,347 mo.service.impl.PayServiceImpl -     validateCheckSum:117  - INFO  - [] - End validate checksum: Success
+2024-09-26 09:29:44,347 mo.service.impl.PayServiceImpl -             setRedis:71   - INFO  - [] - Start set data to redis
+2024-09-26 09:29:44,772 mo.service.impl.PayServiceImpl -             setRedis:74   - INFO  - [] - End set data to redis: Success
+2024-09-26 09:29:44,773 mo.service.impl.PayServiceImpl -        createPayment:45   - INFO  - [] - End create-payment: Success
+2024-09-26 09:29:44,774 ay.bank_demo.util.CheckSumUtil -    calculateCheckSum:26   - INFO  - [] - Checksum: dc5a66011bc764cc8430c2cadba8755203d9fea86adc4f8908e9c03b585c0fb1
+2024-09-26 09:29:44,775 ay.bank_demo.util.CheckSumUtil -    calculateCheckSum:26   - INFO  - [] - Checksum: dc5a66011bc764cc8430c2cadba8755203d9fea86adc4f8908e9c03b585c0fb1
+2024-09-26 09:30:32,012 mo.service.impl.PayServiceImpl -        createPayment:30   - INFO  - [] - Begin create-payment: {
+  "tokenKey": "eyJhbGciOiJIUzUxMiJ9",
+  "apiId": "restPayment",
+  "mobile": "0345225630",
+  "bankCode": "01234567",
+  "privateKey": "12345678",
+  "accountNo": "0001100014211002",
+  "payDate": "20230918124530",
+  "additionalData": "11",
+  "debitAmount": 11200,
+  "respCode": "00",
+  "respDesc": "SUCCESS",
+  "traceTransfer": "FT19310RH6P1",
+  "messageType": "1",
+  "checkSum": "f141f8116d07e1e6e1504c26d2e3e2f32699322e5f28482c8aa0cf561d23aa41",
+  "orderCode": "FT19310RH6P1",
+  "userName": "cntest001",
+  "realAmount": 11200,
+  "promotionCode": "ABCXYZ",
+  "addValue": "{\"payMethod\":\"01\",\"payMethodMMS\":1}"
+}
+2024-09-26 09:30:32,013 mo.service.impl.PayServiceImpl - alidatePromotionCode:157  - INFO  - [] - Error 01: Mã Voucher phải bằng null hoặc rỗng khi không có khuyến mãi.
+2024-09-26 09:30:32,014 ay.bank_demo.util.CheckSumUtil -    calculateCheckSum:26   - INFO  - [] - Checksum: ea6677d5a26efb9e45091e457187e717679ed27056fa3de3afb4ab7141e07b47
+2024-09-26 09:31:37,839 mo.service.impl.PayServiceImpl -        createPayment:30   - INFO  - [] - Begin create-payment: {
+  "tokenKey": "eyJhbGciOiJIUzUxMiJ9",
+  "apiId": "restPayment",
+  "mobile": "0345225630",
+  "bankCode": "01234567",
+  "privateKey": "12345678",
+  "accountNo": "0001100014211002",
+  "payDate": "20230918124530",
+  "additionalData": "11",
+  "debitAmount": 11300,
+  "respCode": "00",
+  "respDesc": "SUCCESS",
+  "traceTransfer": "FT19310RH6P1",
+  "messageType": "1",
+  "checkSum": "f141f8116d07e1e6e1504c26d2e3e2f32699322e5f28482c8aa0cf561d23aa41",
+  "orderCode": "FT19310RH6P1",
+  "userName": "cntest001",
+  "realAmount": 11200,
+  "promotionCode": "ABCXYZ",
+  "addValue": "{\"payMethod\":\"01\",\"payMethodMMS\":1}"
+}
+2024-09-26 09:31:37,840 mo.service.impl.PayServiceImpl -     validateBankCode:79   - INFO  - [] - Start validate BankCode
+2024-09-26 09:31:37,840 mo.service.impl.PayServiceImpl -     validateBankCode:86   - INFO  - [] - End validate BankCode: Success
+2024-09-26 09:31:37,840 mo.service.impl.PayServiceImpl -      checkPrivateKey:135  - INFO  - [] - privateKey belongs to bankCode
+2024-09-26 09:31:37,840 mo.service.impl.PayServiceImpl -     validateCheckSum:106  - INFO  - [] - Start validate checksum
+2024-09-26 09:31:37,840 ay.bank_demo.util.CheckSumUtil -    calculateCheckSum:26   - INFO  - [] - Checksum: e381ee051e0b6088ec431946222ea0d495a95ded50457c188ac148c39d079eda
+2024-09-26 09:31:37,840 mo.service.impl.PayServiceImpl -     validateCheckSum:112  - INFO  - [] - Checksum request: f141f8116d07e1e6e1504c26d2e3e2f32699322e5f28482c8aa0cf561d23aa41
+2024-09-26 09:31:37,840 mo.service.impl.PayServiceImpl -     validateCheckSum:114  - WARN  - [] - Error code 03: Checksum Failed
+2024-09-26 09:31:37,841 ay.bank_demo.util.CheckSumUtil -    calculateCheckSum:26   - INFO  - [] - Checksum: e732dac02184c1a875803192bf7b00fd171094b7eee3856bff4333ae8374bf63
+2024-09-26 09:31:48,349 tainerEntityManagerFactoryBean -              destroy:650  - INFO  - [] - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-26 09:31:48,350 zaxxer.hikari.HikariDataSource -                close:349  - INFO  - [] - HikariPool-1 - Shutdown initiated...
+2024-09-26 09:31:48,355 zaxxer.hikari.HikariDataSource -                close:351  - INFO  - [] - HikariPool-1 - Shutdown completed.
+2024-09-26 09:31:59,664 alidator.internal.util.Version -             <clinit>:21   - INFO  - [] - HV000001: Hibernate Validator 8.0.1.Final
+2024-09-26 09:31:59,696 .bank_demo.BankDemoApplication -          logStarting:50   - INFO  - [] - Starting BankDemoApplication using Java 17.0.8.1 with PID 2856 (D:\VNPay\TTS\bank_demo\target\classes started by MSI in D:\VNPay\TTS\bank_demo)
+2024-09-26 09:31:59,697 .bank_demo.BankDemoApplication - ogStartupProfileInfo:654  - INFO  - [] - No active profile set, falling back to 1 default profile: "default"
+2024-09-26 09:32:00,174 epositoryConfigurationDelegate - ltipleStoresDetected:295  - INFO  - [] - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-09-26 09:32:00,175 epositoryConfigurationDelegate - gisterRepositoriesIn:143  - INFO  - [] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-26 09:32:00,278 epositoryConfigurationDelegate - gisterRepositoriesIn:211  - INFO  - [] - Finished Spring Data repository scanning in 98 ms. Found 2 JPA repository interfaces.
+2024-09-26 09:32:00,288 epositoryConfigurationDelegate - ltipleStoresDetected:295  - INFO  - [] - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-09-26 09:32:00,289 epositoryConfigurationDelegate - gisterRepositoriesIn:143  - INFO  - [] - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-09-26 09:32:00,298 yConfigurationExtensionSupport - tRepositoryCandidate:320  - INFO  - [] - Spring Data Redis - Could not safely identify store assignment for repository candidate interface vn.vnpay.bank_demo.repository.PaymentRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-26 09:32:00,299 yConfigurationExtensionSupport - tRepositoryCandidate:320  - INFO  - [] - Spring Data Redis - Could not safely identify store assignment for repository candidate interface vn.vnpay.bank_demo.repository.UsersRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-26 09:32:00,299 epositoryConfigurationDelegate - gisterRepositoriesIn:211  - INFO  - [] - Finished Spring Data repository scanning in 4 ms. Found 0 Redis repository interfaces.
+2024-09-26 09:32:00,627 mbedded.tomcat.TomcatWebServer -           initialize:111  - INFO  - [] - Tomcat initialized with port 8080 (http)
+2024-09-26 09:32:00,635 oyote.http11.Http11NioProtocol -                  log:173  - INFO  - [] - Initializing ProtocolHandler ["http-nio-8080"]
+2024-09-26 09:32:00,637 .catalina.core.StandardService -                  log:173  - INFO  - [] - Starting service [Tomcat]
+2024-09-26 09:32:00,637 e.catalina.core.StandardEngine -                  log:173  - INFO  - [] - Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-09-26 09:32:00,685 .[Tomcat].[localhost].[/vnpay] -                  log:173  - INFO  - [] - Initializing Spring embedded WebApplicationContext
+2024-09-26 09:32:00,685 letWebServerApplicationContext - ebApplicationContext:296  - INFO  - [] - Root WebApplicationContext: initialization completed in 960 ms
+2024-09-26 09:32:00,814 te.jpa.internal.util.LogHelper - tenceUnitInformation:31   - INFO  - [] - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-26 09:32:00,847 org.hibernate.Version          -           logVersion:44   - INFO  - [] - HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-09-26 09:32:00,870 nternal.RegionFactoryInitiator -      initiateService:50   - INFO  - [] - HHH000026: Second-level cache disabled
+2024-09-26 09:32:01,050 unit.SpringPersistenceUnitInfo -       addTransformer:87   - INFO  - [] - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-26 09:32:01,070 zaxxer.hikari.HikariDataSource -        getConnection:109  - INFO  - [] - HikariPool-1 - Starting...
+2024-09-26 09:32:01,226 .zaxxer.hikari.pool.HikariPool -        checkFailFast:554  - INFO  - [] - HikariPool-1 - Added connection ConnectionID:1 ClientConnectionId: f835101f-2edd-4211-9fa1-59c5ab520c82
+2024-09-26 09:32:01,227 zaxxer.hikari.HikariDataSource -        getConnection:122  - INFO  - [] - HikariPool-1 - Start completed.
+2024-09-26 09:32:01,814 .internal.JtaPlatformInitiator -      initiateService:59   - INFO  - [] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-26 09:32:01,816 tainerEntityManagerFactoryBean - EntityManagerFactory:437  - INFO  - [] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-26 09:32:02,304 figuration$JpaWebConfiguration - gerInViewInterceptor:236  - WARN  - [] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-26 09:32:02,470 tTemplateResolverConfiguration - mplateLocationExists:101  - WARN  - [] - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-09-26 09:32:02,567 oyote.http11.Http11NioProtocol -                  log:173  - INFO  - [] - Starting ProtocolHandler ["http-nio-8080"]
+2024-09-26 09:32:02,584 mbedded.tomcat.TomcatWebServer -                start:243  - INFO  - [] - Tomcat started on port 8080 (http) with context path '/vnpay'
+2024-09-26 09:32:02,590 .bank_demo.BankDemoApplication -           logStarted:56   - INFO  - [] - Started BankDemoApplication in 3.256 seconds (process running for 3.737)
+2024-09-26 09:32:12,223 .[Tomcat].[localhost].[/vnpay] -                  log:173  - INFO  - [] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-26 09:32:12,224 .web.servlet.DispatcherServlet -      initServletBean:532  - INFO  - [] - Initializing Servlet 'dispatcherServlet'
+2024-09-26 09:32:12,225 .web.servlet.DispatcherServlet -      initServletBean:554  - INFO  - [] - Completed initialization in 1 ms
+2024-09-26 09:32:12,334 mo.service.impl.PayServiceImpl -        createPayment:30   - INFO  - [] - Begin create-payment: {
+  "tokenKey": "eyJhbGciOiJIUzUxMiJ9",
+  "apiId": "restPayment",
+  "mobile": "0345225630",
+  "bankCode": "01234567",
+  "privateKey": "12345678",
+  "accountNo": "0001100014211002",
+  "payDate": "20230918124530",
+  "additionalData": "11",
+  "debitAmount": 11200,
+  "respCode": "00",
+  "respDesc": "SUCCESS",
+  "traceTransfer": "FT19310RH6P1",
+  "messageType": "1",
+  "checkSum": "f141f8116d07e1e6e1504c26d2e3e2f32699322e5f28482c8aa0cf561d23aa41",
+  "orderCode": "FT19310RH6P1",
+  "userName": "cntest001",
+  "realAmount": 11300,
+  "promotionCode": "ABCXYZ",
+  "addValue": "{\"payMethod\":\"01\",\"payMethodMMS\":1}"
+}
+2024-09-26 09:32:12,334 mo.service.impl.PayServiceImpl - alidatePromotionCode:153  - INFO  - [] - Error 01: Số tiền thanh toán phải hơn số tiền sau khuyến mại.
+2024-09-26 09:32:12,337 ay.bank_demo.util.CheckSumUtil -    calculateCheckSum:26   - INFO  - [] - Checksum: 4831f3c88344aa6be1209cff880897ac8922af27a6c2836a7872f051727aabf1
+2024-09-26 09:32:36,225 mo.service.impl.PayServiceImpl -        createPayment:30   - INFO  - [] - Begin create-payment: {
+  "tokenKey": "eyJhbGciOiJIUzUxMiJ9",
+  "apiId": "restPayment",
+  "mobile": "0345225630",
+  "bankCode": "01234567",
+  "privateKey": "12345678",
+  "accountNo": "0001100014211002",
+  "payDate": "20230918124530",
+  "additionalData": "11",
+  "debitAmount": 11300,
+  "respCode": "00",
+  "respDesc": "SUCCESS",
+  "traceTransfer": "FT19310RH6P1",
+  "messageType": "1",
+  "checkSum": "f141f8116d07e1e6e1504c26d2e3e2f32699322e5f28482c8aa0cf561d23aa41",
+  "orderCode": "FT19310RH6P1",
+  "userName": "cntest001",
+  "realAmount": 11200,
+  "promotionCode": "",
+  "addValue": "{\"payMethod\":\"01\",\"payMethodMMS\":1}"
+}
+2024-09-26 09:32:36,226 mo.service.impl.PayServiceImpl - alidatePromotionCode:162  - INFO  - [] - Error 01: Không có mã voucher, mặc dù số tiền đã giảm.
+2024-09-26 09:32:36,226 ay.bank_demo.util.CheckSumUtil -    calculateCheckSum:26   - INFO  - [] - Checksum: bd7304a843e45f8215c3a4455679053549700076fc332730a8b78c0dc637c9dc
+2024-09-26 09:33:06,327 mo.service.impl.PayServiceImpl -        createPayment:30   - INFO  - [] - Begin create-payment: {
+  "tokenKey": "eyJhbGciOiJIUzUxMiJ9",
+  "apiId": "restPayment",
+  "mobile": "0345225630",
+  "bankCode": "01234567",
+  "privateKey": "12345678",
+  "accountNo": "0001100014211002",
+  "payDate": "20230918124530",
+  "additionalData": "11",
+  "debitAmount": 11300,
+  "respCode": "00",
+  "respDesc": "SUCCESS",
+  "traceTransfer": "FT19310RH6P1",
+  "messageType": "1",
+  "checkSum": "f141f8116d07e1e6e1504c26d2e3e2f32699322e5f28482c8aa0cf561d23aa41",
+  "orderCode": "FT19310RH6P1",
+  "userName": "cntest001",
+  "realAmount": 11200,
+  "promotionCode": null,
+  "addValue": "{\"payMethod\":\"01\",\"payMethodMMS\":1}"
+}
+2024-09-26 09:33:06,328 mo.service.impl.PayServiceImpl - alidatePromotionCode:162  - INFO  - [] - Error 01: Không có mã voucher, mặc dù số tiền đã giảm.
+2024-09-26 09:33:06,328 ay.bank_demo.util.CheckSumUtil -    calculateCheckSum:26   - INFO  - [] - Checksum: bd7304a843e45f8215c3a4455679053549700076fc332730a8b78c0dc637c9dc
+2024-09-26 09:33:29,006 tainerEntityManagerFactoryBean -              destroy:650  - INFO  - [] - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-26 09:33:29,007 zaxxer.hikari.HikariDataSource -                close:349  - INFO  - [] - HikariPool-1 - Shutdown initiated...
+2024-09-26 09:33:29,013 zaxxer.hikari.HikariDataSource -                close:351  - INFO  - [] - HikariPool-1 - Shutdown completed.
+2024-09-26 09:40:01,054 alidator.internal.util.Version -             <clinit>:21   - INFO  - [] - HV000001: Hibernate Validator 8.0.1.Final
+2024-09-26 09:40:01,082 .bank_demo.BankDemoApplication -          logStarting:50   - INFO  - [] - Starting BankDemoApplication using Java 17.0.8.1 with PID 21184 (D:\VNPay\TTS\bank_demo\target\classes started by MSI in D:\VNPay\TTS\bank_demo)
+2024-09-26 09:40:01,083 .bank_demo.BankDemoApplication - ogStartupProfileInfo:654  - INFO  - [] - No active profile set, falling back to 1 default profile: "default"
+2024-09-26 09:40:01,574 epositoryConfigurationDelegate - ltipleStoresDetected:295  - INFO  - [] - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-09-26 09:40:01,575 epositoryConfigurationDelegate - gisterRepositoriesIn:143  - INFO  - [] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-26 09:40:01,691 epositoryConfigurationDelegate - gisterRepositoriesIn:211  - INFO  - [] - Finished Spring Data repository scanning in 111 ms. Found 2 JPA repository interfaces.
+2024-09-26 09:40:01,703 epositoryConfigurationDelegate - ltipleStoresDetected:295  - INFO  - [] - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-09-26 09:40:01,704 epositoryConfigurationDelegate - gisterRepositoriesIn:143  - INFO  - [] - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-09-26 09:40:01,715 yConfigurationExtensionSupport - tRepositoryCandidate:320  - INFO  - [] - Spring Data Redis - Could not safely identify store assignment for repository candidate interface vn.vnpay.bank_demo.repository.PaymentRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-26 09:40:01,715 yConfigurationExtensionSupport - tRepositoryCandidate:320  - INFO  - [] - Spring Data Redis - Could not safely identify store assignment for repository candidate interface vn.vnpay.bank_demo.repository.UsersRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-09-26 09:40:01,715 epositoryConfigurationDelegate - gisterRepositoriesIn:211  - INFO  - [] - Finished Spring Data repository scanning in 5 ms. Found 0 Redis repository interfaces.
+2024-09-26 09:40:02,057 mbedded.tomcat.TomcatWebServer -           initialize:111  - INFO  - [] - Tomcat initialized with port 8080 (http)
+2024-09-26 09:40:02,064 oyote.http11.Http11NioProtocol -                  log:173  - INFO  - [] - Initializing ProtocolHandler ["http-nio-8080"]
+2024-09-26 09:40:02,066 .catalina.core.StandardService -                  log:173  - INFO  - [] - Starting service [Tomcat]
+2024-09-26 09:40:02,066 e.catalina.core.StandardEngine -                  log:173  - INFO  - [] - Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-09-26 09:40:02,118 .[Tomcat].[localhost].[/vnpay] -                  log:173  - INFO  - [] - Initializing Spring embedded WebApplicationContext
+2024-09-26 09:40:02,119 letWebServerApplicationContext - ebApplicationContext:296  - INFO  - [] - Root WebApplicationContext: initialization completed in 1009 ms
+2024-09-26 09:40:02,260 te.jpa.internal.util.LogHelper - tenceUnitInformation:31   - INFO  - [] - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-26 09:40:02,295 org.hibernate.Version          -           logVersion:44   - INFO  - [] - HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-09-26 09:40:02,317 nternal.RegionFactoryInitiator -      initiateService:50   - INFO  - [] - HHH000026: Second-level cache disabled
+2024-09-26 09:40:02,498 unit.SpringPersistenceUnitInfo -       addTransformer:87   - INFO  - [] - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-26 09:40:02,519 zaxxer.hikari.HikariDataSource -        getConnection:109  - INFO  - [] - HikariPool-1 - Starting...
+2024-09-26 09:40:02,679 .zaxxer.hikari.pool.HikariPool -        checkFailFast:554  - INFO  - [] - HikariPool-1 - Added connection ConnectionID:1 ClientConnectionId: e304aad7-6cdb-4cd4-a179-96e3b18fe1d4
+2024-09-26 09:40:02,680 zaxxer.hikari.HikariDataSource -        getConnection:122  - INFO  - [] - HikariPool-1 - Start completed.
+2024-09-26 09:40:03,326 .internal.JtaPlatformInitiator -      initiateService:59   - INFO  - [] - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-26 09:40:03,328 tainerEntityManagerFactoryBean - EntityManagerFactory:437  - INFO  - [] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-26 09:40:03,856 figuration$JpaWebConfiguration - gerInViewInterceptor:236  - WARN  - [] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-26 09:40:04,019 tTemplateResolverConfiguration - mplateLocationExists:101  - WARN  - [] - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2024-09-26 09:40:04,116 oyote.http11.Http11NioProtocol -                  log:173  - INFO  - [] - Starting ProtocolHandler ["http-nio-8080"]
+2024-09-26 09:40:04,134 mbedded.tomcat.TomcatWebServer -                start:243  - INFO  - [] - Tomcat started on port 8080 (http) with context path '/vnpay'
+2024-09-26 09:40:04,140 .bank_demo.BankDemoApplication -           logStarted:56   - INFO  - [] - Started BankDemoApplication in 3.398 seconds (process running for 3.819)
+2024-09-26 09:40:11,808 .[Tomcat].[localhost].[/vnpay] -                  log:173  - INFO  - [] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-26 09:40:11,808 .web.servlet.DispatcherServlet -      initServletBean:532  - INFO  - [] - Initializing Servlet 'dispatcherServlet'
+2024-09-26 09:40:11,809 .web.servlet.DispatcherServlet -      initServletBean:554  - INFO  - [] - Completed initialization in 1 ms
+2024-09-26 09:40:11,924 mo.service.impl.PayServiceImpl -        createPayment:30   - INFO  - [] - Begin create-payment: {
+  "tokenKey": "eyJhbGciOiJIUzUxMiJ9",
+  "apiId": "restPayment",
+  "mobile": "0345225630",
+  "bankCode": "01234567",
+  "privateKey": "12345678",
+  "accountNo": "0001100014211002",
+  "payDate": "20230918124530",
+  "additionalData": "11",
+  "debitAmount": 11300,
+  "respCode": "00",
+  "respDesc": "SUCCESS",
+  "traceTransfer": "FT19310RH6P1",
+  "messageType": "1",
+  "checkSum": "f141f8116d07e1e6e1504c26d2e3e2f32699322e5f28482c8aa0cf561d23aa41",
+  "orderCode": "FT19310RH6P1",
+  "userName": "cntest001",
+  "realAmount": 11200,
+  "promotionCode": null,
+  "addValue": "{\"payMethod\":\"01\",\"payMethodMMS\":1}"
+}
+2024-09-26 09:40:11,924 mo.service.impl.PayServiceImpl - alidatePromotionCode:154  - INFO  - [] - Error code 01: Không có mã voucher, mặc dù số tiền đã giảm.
+2024-09-26 09:40:11,927 ay.bank_demo.util.CheckSumUtil -    calculateCheckSum:26   - INFO  - [] - Checksum: bd7304a843e45f8215c3a4455679053549700076fc332730a8b78c0dc637c9dc
+2024-09-26 09:40:25,692 mo.service.impl.PayServiceImpl -        createPayment:30   - INFO  - [] - Begin create-payment: {
+  "tokenKey": "eyJhbGciOiJIUzUxMiJ9",
+  "apiId": "restPayment",
+  "mobile": "0345225630",
+  "bankCode": "01234567",
+  "privateKey": "12345678",
+  "accountNo": "0001100014211002",
+  "payDate": "20230918124530",
+  "additionalData": "11",
+  "debitAmount": 11300,
+  "respCode": "00",
+  "respDesc": "SUCCESS",
+  "traceTransfer": "FT19310RH6P1",
+  "messageType": "1",
+  "checkSum": "f141f8116d07e1e6e1504c26d2e3e2f32699322e5f28482c8aa0cf561d23aa41",
+  "orderCode": "FT19310RH6P1",
+  "userName": "cntest001",
+  "realAmount": 11200,
+  "promotionCode": "ABCXYZ",
+  "addValue": "{\"payMethod\":\"01\",\"payMethodMMS\":1}"
+}
+2024-09-26 09:40:25,697 ay.bank_demo.util.CheckSumUtil -    calculateCheckSum:26   - INFO  - [] - Checksum: e381ee051e0b6088ec431946222ea0d495a95ded50457c188ac148c39d079eda
+2024-09-26 09:40:25,697 mo.service.impl.PayServiceImpl -     validateCheckSum:107  - INFO  - [] - Checksum request: f141f8116d07e1e6e1504c26d2e3e2f32699322e5f28482c8aa0cf561d23aa41
+2024-09-26 09:40:25,697 mo.service.impl.PayServiceImpl -     validateCheckSum:109  - WARN  - [] - Error code 03: Checksum Failed
+2024-09-26 09:40:25,697 ay.bank_demo.util.CheckSumUtil -    calculateCheckSum:26   - INFO  - [] - Checksum: e732dac02184c1a875803192bf7b00fd171094b7eee3856bff4333ae8374bf63
+2024-09-26 09:40:53,866 mo.service.impl.PayServiceImpl -       createCheckSum:87   - INFO  - [] - Begin create-checkSum: {
+  "mobile": "0345225630",
+  "bankCode": "01234567",
+  "privateKey": "12345678",
+  "accountNo": "0001100014211002",
+  "payDate": "20230918124530",
+  "debitAmount": "11300",
+  "respCode": "00",
+  "traceTransfer": "FT19310RH6P1",
+  "messageType": "1"
+}
+2024-09-26 09:40:53,866 ay.bank_demo.util.CheckSumUtil -    calculateCheckSum:26   - INFO  - [] - Checksum: e381ee051e0b6088ec431946222ea0d495a95ded50457c188ac148c39d079eda
+2024-09-26 09:40:53,866 mo.service.impl.PayServiceImpl -       createCheckSum:97   - INFO  - [] - End create-checkSum: e381ee051e0b6088ec431946222ea0d495a95ded50457c188ac148c39d079eda
+2024-09-26 09:41:04,496 mo.service.impl.PayServiceImpl -        createPayment:30   - INFO  - [] - Begin create-payment: {
+  "tokenKey": "eyJhbGciOiJIUzUxMiJ9",
+  "apiId": "restPayment",
+  "mobile": "0345225630",
+  "bankCode": "01234567",
+  "privateKey": "12345678",
+  "accountNo": "0001100014211002",
+  "payDate": "20230918124530",
+  "additionalData": "11",
+  "debitAmount": 11300,
+  "respCode": "00",
+  "respDesc": "SUCCESS",
+  "traceTransfer": "FT19310RH6P1",
+  "messageType": "1",
+  "checkSum": "e381ee051e0b6088ec431946222ea0d495a95ded50457c188ac148c39d079eda",
+  "orderCode": "FT19310RH6P1",
+  "userName": "cntest001",
+  "realAmount": 11200,
+  "promotionCode": "ABCXYZ",
+  "addValue": "{\"payMethod\":\"01\",\"payMethodMMS\":1}"
+}
+2024-09-26 09:41:04,497 ay.bank_demo.util.CheckSumUtil -    calculateCheckSum:26   - INFO  - [] - Checksum: e381ee051e0b6088ec431946222ea0d495a95ded50457c188ac148c39d079eda
+2024-09-26 09:41:04,497 mo.service.impl.PayServiceImpl -     validateCheckSum:107  - INFO  - [] - Checksum request: e381ee051e0b6088ec431946222ea0d495a95ded50457c188ac148c39d079eda
+2024-09-26 09:41:04,882 mo.service.impl.PayServiceImpl -        createPayment:45   - INFO  - [] - End create-payment: Success
+2024-09-26 09:41:04,883 ay.bank_demo.util.CheckSumUtil -    calculateCheckSum:26   - INFO  - [] - Checksum: 141a04aaf9fc66ac426e028b06bcccd4cb2abb3737184c3d354c00fe55fca78b
+2024-09-26 09:41:04,884 ay.bank_demo.util.CheckSumUtil -    calculateCheckSum:26   - INFO  - [] - Checksum: 141a04aaf9fc66ac426e028b06bcccd4cb2abb3737184c3d354c00fe55fca78b
+2024-09-26 10:47:19,302 tainerEntityManagerFactoryBean -              destroy:650  - INFO  - [] - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-26 10:47:19,315 zaxxer.hikari.HikariDataSource -                close:349  - INFO  - [] - HikariPool-1 - Shutdown initiated...
+2024-09-26 10:47:19,321 zaxxer.hikari.HikariDataSource -                close:351  - INFO  - [] - HikariPool-1 - Shutdown completed.
