@@ -7,4 +7,6 @@ import vn.vnpay.bank_demo.model.dto.auth.response.AuthenticationResDto;
 public interface AuthenticationService {
     AuthenticationResDto authenticate(AuthenticationReqDTO authenticationReqDTO);
 
+    String createTokenKey();
+
 }

@@ -2,6 +2,7 @@ package vn.vnpay.bank_demo.model.dto.payment.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,6 +35,7 @@ public class PaymentRequestDTO {
     private String accountNo;
 
     @NotNull(message = "Pay date cannot be null")
+    @Pattern(regexp = "^\\d{14}$", message = "Pay date must be in the format yyyyMMddHHmmss")
     private String payDate;
 
     @NotBlank(message = "Field additionalData cannot be null, empty, or blank")
@@ -66,29 +68,8 @@ public class PaymentRequestDTO {
     @NotNull(message = "realAmount cannot be null")
     private BigDecimal realAmount;
 
-    @NotBlank(message = "Field promotionCode cannot be null, empty, or blank")
     private String promotionCode;
 
-    @Override
-    public String toString() {
-        return "PaymentRequestDTO{" +
-                "tokenKey='" + tokenKey + '\'' +
-                ", apiId='" + apiId + '\'' +
-                ", mobile='" + mobile + '\'' +
-                ", bankCode='" + bankCode + '\'' +
-                ", accountNo='" + accountNo + '\'' +
-                ", payDate='" + payDate + '\'' +
-                ", additionalData='" + additionalData + '\'' +
-                ", debitAmount=" + debitAmount +
-                ", respCode='" + respCode + '\'' +
-                ", respDesc='" + respDesc + '\'' +
-                ", traceTransfer='" + traceTransfer + '\'' +
-                ", messageType='" + messageType + '\'' +
-                ", checkSum='" + checkSum + '\'' +
-                ", orderCode='" + orderCode + '\'' +
-                ", userName='" + userName + '\'' +
-                ", realAmount=" + realAmount +
-                ", promotionCode='" + promotionCode + '\'' +
-                '}';
-    }
+    private String addValue = "{\"payMethod\":\"01\",\"payMethodMMS\":1}";
+
 }

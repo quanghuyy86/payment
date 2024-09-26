@@ -28,6 +28,8 @@ public class PayServiceImpl implements PayService {
     @Override
     public void createPayment(PaymentRequestDTO request) {
         log.info("Begin create-payment: {}", gson.toJson(request));
+        //Validate request
+        validatePromotionCode(request);
 
         //Check bankCode
         validateBankCode(request.getBankCode());
@@ -66,22 +68,18 @@ public class PayServiceImpl implements PayService {
     }
 
     private void setRedis(PaymentRequestDTO request) {
-        log.info("Start set data to redis");
         String dataReq = gson.toJson(request);
         setDataToRedis(request.getBankCode(), request.getTokenKey(), dataReq);
-        log.info("End set data to redis: Success");
     }
 
 
     private void validateBankCode(String bankCode) {
-        log.info("Start validate BankCode");
         boolean exist = banks.getBankList().stream()
                 .anyMatch(bank -> bank.getBankCode().equals(bankCode));
         if (!exist) {
             log.info("Error code 02: BankCode Failed");
             throw new BankException(BankResponseCode.BANK_CODE_ERROR, "bankCode Failed");
         }
-        log.info("End validate BankCode: Success");
     }
 
     @Override
@@ -101,7 +99,6 @@ public class PayServiceImpl implements PayService {
     }
 
     private static void validateCheckSum(PaymentRequestDTO request) {
-        log.info("Start validate checksum");
         String input = request.getMobile() + request.getBankCode() + request.getAccountNo()
                 + request.getPayDate() + request.getDebitAmount() + request.getRespCode()
                 + request.getTraceTransfer() + request.getMessageType() + request.getPrivateKey();
@@ -112,7 +109,6 @@ public class PayServiceImpl implements PayService {
             log.warn("Error code 03: Checksum Failed");
             throw new BankException(BankResponseCode.CHECKSUM_ERROR, "checkSum failed");
         }
-        log.info("End validate checksum: Success");
     }
 
     // Hàm để set dữ liệu vào Redis
@@ -129,9 +125,7 @@ public class PayServiceImpl implements PayService {
 
     private void checkPrivateKey(String bankCode, String privateKey) {
         boolean isValid = validatePrivateKey(bankCode, privateKey);
-        if (isValid) {
-            log.info("privateKey belongs to bankCode");
-        } else {
+        if (!isValid){
             log.info("Error code 02: PrivateKey does not belong to bankCode");
             throw new BankException(BankResponseCode.BANK_CODE_ERROR, "Invalid privateKey for bankCode");
         }
@@ -142,5 +136,26 @@ public class PayServiceImpl implements PayService {
                 .filter(bank -> bank.getBankCode().equals(bankCode))
                 .anyMatch(bank -> bank.getPrivateKey().equals(privateKey));
     }
+
+    private void validatePromotionCode(PaymentRequestDTO request) {
+        // So sánh hai giá trị debitAmount(số tiền thanh toán) và realAmount(số tiền sau khuyến mại)
+        int comparisonResult = request.getDebitAmount().compareTo(request.getRealAmount());
+
+        if (comparisonResult < 0) { // debitAmount nhỏ hơn realAmount
+            log.info("Error code 01: Số tiền thanh toán phải hơn số tiền sau khuyến mại.");
+            throw new BankException(BankResponseCode.FIELD_ERROR, "Số tiền thanh toán phải lớn hơn hoặc bằng số tiền sau khuyến mại.");
+        } else if (comparisonResult == 0) { // debitAmount bằng realAmount
+            if (request.getPromotionCode() != null && !request.getPromotionCode().isEmpty()) {
+                log.info("Error code 01: Mã Voucher phải bằng null hoặc rỗng khi không có khuyến mãi.");
+                throw new BankException(BankResponseCode.FIELD_ERROR, "Mã Voucher phải bằng null hoặc rỗng khi không có khuyến mãi.");
+            }
+        } else { // debitAmount lớn hơn realAmount
+            if (request.getPromotionCode() == null || request.getPromotionCode().isEmpty()) {
+                log.info("Error code 01: Không có mã voucher, mặc dù số tiền đã giảm.");
+                throw new BankException(BankResponseCode.FIELD_ERROR,"Không có mã voucher, mặc dù số tiền đã giảm.");
+            }
+        }
+    }
+
 
 }
