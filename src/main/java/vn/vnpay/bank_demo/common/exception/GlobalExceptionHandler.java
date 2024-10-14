@@ -1,6 +1,7 @@
 package vn.vnpay.bank_demo.common.exception;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -15,6 +16,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @ControllerAdvice
+@Slf4j
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = Exception.class)
@@ -51,6 +53,7 @@ public class GlobalExceptionHandler {
                     .code(BankResponseCode.BAD_GATEWAY_ERROR.getCode())
                     .message(exception.getMessage())
                     .build();
+            log.error(exception.getMessage());
             return ResponseEntity.status(HttpStatus.OK)
                     .body(response);
         }

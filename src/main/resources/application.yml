@@ -1,9 +1,12 @@
 spring:
   application:
     name: bank_demo
-#  jmx:
-#    enabled: false
-
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
   datasource:
     url: jdbc:sqlserver://localhost:1433;databaseName=bank_demo;encrypt=true;trustServerCertificate=true;useUnicode=true&characterEncoding=utf-8
     username: SA

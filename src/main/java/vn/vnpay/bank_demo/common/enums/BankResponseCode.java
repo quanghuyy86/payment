@@ -10,6 +10,8 @@ public enum BankResponseCode {
     CHECKSUM_ERROR("03", "CheckSum error"),
     LOST_CONNECTION_TO_REDIS("04", "Lost connection to redis"),
     SQL_ERROR("05", "SQL error"),
+    JSON_ERROR("06", "JSON error"),
+    TOKENKEY_DUPLICATED("07", "tokenKey is duplicated"),
     BAD_GATEWAY_ERROR("99", "Internal server error");
 
     private final String code;
