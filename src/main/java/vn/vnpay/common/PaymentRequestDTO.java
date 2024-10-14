@@ -1,4 +1,4 @@
-package vn.vnpay.bank_demo.model.dto.payment.request;
+package vn.vnpay.common;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -15,7 +16,9 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PaymentRequestDTO {
+public class PaymentRequestDTO implements Serializable {
+    private static final long serialVersionUID = 11112L;
+
     @NotBlank(message = "Field tokenKey cannot be null, empty, or blank")
     private String tokenKey;
 

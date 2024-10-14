@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import vn.vnpay.bank_demo.common.dto.responses.BankResulMessage;
 import vn.vnpay.bank_demo.model.dto.payment.request.CheckSumRequestDTO;
-import vn.vnpay.bank_demo.model.dto.payment.request.PaymentRequestDTO;
+import vn.vnpay.common.PaymentRequestDTO;
 import vn.vnpay.bank_demo.service.PayService;
 
 @RestController

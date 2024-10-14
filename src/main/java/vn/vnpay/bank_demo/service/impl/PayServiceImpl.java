@@ -1,17 +1,26 @@
 package vn.vnpay.bank_demo.service.impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import vn.vnpay.bank_demo.common.enums.BankResponseCode;
 import vn.vnpay.bank_demo.common.exception.BankException;
 import vn.vnpay.bank_demo.config.bank.Banks;
+import vn.vnpay.bank_demo.config.rabitmq.RabbitMQConfig;
 import vn.vnpay.bank_demo.model.dto.payment.request.CheckSumRequestDTO;
-import vn.vnpay.bank_demo.model.dto.payment.request.PaymentRequestDTO;
+import vn.vnpay.common.PaymentRequestDTO;
+import vn.vnpay.common.PaymentConsumerResponse;
 import vn.vnpay.bank_demo.repository.PaymentRepository;
 import vn.vnpay.bank_demo.service.PayService;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.concurrent.TimeUnit;
 
 import static vn.vnpay.bank_demo.util.CheckSumUtil.calculateCheckSum;
 
@@ -24,11 +33,24 @@ public class PayServiceImpl implements PayService {
     private final RedisTemplate<String, Object> redisTemplate;
     private final Banks banks;
     private final Gson gson;
+    private final RabbitTemplate rabbitTemplate;
+    private final ObjectMapper objectMapper;
+    public final String TOKEN_KEY = "TokenKey_" + LocalDate.now();
+
 
     @Override
     public void createPayment(PaymentRequestDTO request) {
         log.info("Begin create-payment: {}", gson.toJson(request));
-        //Validate request
+        //Validate tokenKey
+        //TODO: setIfAbsent
+        // nhung kieu du lieu nao
+        // set expire
+        boolean exists = redisTemplate.opsForHash().hasKey(TOKEN_KEY, request.getTokenKey());
+        if (exists){
+            log.info("TokenKey is duplicated");
+            throw new BankException(BankResponseCode.TOKENKEY_DUPLICATED, "TokenKey is duplicated");
+        }
+        //Validate Promotion Code
         validatePromotionCode(request);
 
         //Check bankCode
@@ -40,31 +62,55 @@ public class PayServiceImpl implements PayService {
         //Kiểm tra checkSum
         validateCheckSum(request);
 
-        //Set Redis pool
-        setRedis(request);
+        //đẩy dũ liệu lên rabbit
+//        setDataToRabbitMQ(request);
+
+
+        log.info("TokenKey: " + request.getTokenKey() + " expiration time: " + getSecondsUntilMidnight() + "S"); // thời gian hết hạn cho đến 0h ngày hôm sau
+        redisTemplate.opsForHash().put(this.TOKEN_KEY, request.getTokenKey(), request.getTokenKey());
+        for (int i= 0; i<1000000; i++){
+            rabbitTemplate.convertAndSend("myQueue","hello");
+        }
         log.info("End create-payment: Success");
+    }
 
-//        Payment payment = Payment.builder()
-//                .tokenKey(request.getTokenKey())
-//                .apiId(request.getApiId())
-//                .mobile(request.getMobile())
-//                .bankCode(request.getBankCode())
-//                .accountNo(request.getAccountNo())
-//                .payDate(request.getPayDate())
-//                .additionalData(request.getAdditionalData())
-//                .debitAmount(request.getDebitAmount())
-//                .respDesc(request.getRespDesc())
-//                .respCode(request.getRespCode())
-//                .traceTransfer(request.getTraceTransfer())
-//                .messageType(request.getMessageType())
-//                .checkSum(request.getCheckSum())
-//                .orderCode(request.getOrderCode())
-//                .userName(request.getUserName())
-//                .realAmount(request.getRealAmount())
-//                .promotionCode(request.getPromotionCode())
-//                .build();
-//        paymentRepository.save(payment);
+    private void setDataToRabbitMQ(PaymentRequestDTO request) {
+        try {
+            // Gửi dữ liệu đến RabbitMQ và nhận phản hồi
+//            PaymentConsumerResponse consumerResponse = (PaymentConsumerResponse) rabbitTemplate.convertSendAndReceive(RabbitMQConfig.QUEUE_NAME, request);
+            PaymentConsumerResponse consumerResponse = (PaymentConsumerResponse) rabbitTemplate.convertSendAndReceive(RabbitMQConfig.QUEUE_NAME, request);
+            log.info("Response Consumer: {}" , gson.toJson( consumerResponse));
 
+            // Kiểm tra phản hồi từ Consumer
+            if (consumerResponse == null) {
+                throw new BankException(BankResponseCode.BAD_GATEWAY_ERROR, "Not found consumer");
+            }
+
+            // Chuyển đổi phản hồi JSON thành đối tượng PaymentConsumerResponse
+//            PaymentConsumerResponse paymentConsumerResponse = objectMapper.readValue(consumerResponse, PaymentConsumerResponse.class);
+
+            // Kiểm tra mã phản hồi
+            if ("99".equals(consumerResponse.getCode())) {//TODO: enum error code
+                throw new BankException(BankResponseCode.BAD_GATEWAY_ERROR, consumerResponse.getMessage());
+            }
+
+        } catch (Exception e) {
+            log.error("Unexpected error: ",e);
+            throw new BankException(BankResponseCode.BAD_GATEWAY_ERROR, "An unexpected error occurred");
+        }
+    }
+
+    private void validateTokenKey(PaymentRequestDTO request) {
+        if (Boolean.TRUE.equals(redisTemplate.hasKey(request.getTokenKey()))) {
+            log.info("TokenKey is duplicated");
+            throw new BankException(BankResponseCode.TOKENKEY_DUPLICATED, "TokenKey is duplicated");
+        } else {
+            // thời gian hết hạn cho đến 0h ngày hôm sau
+            long secondsUntilMidnight = getSecondsUntilMidnight();
+            log.info("Expiration time: " + secondsUntilMidnight);
+            // Lưu tokenKey vào Redis với thời gian hết hạn tính bằng giây
+            redisTemplate.opsForValue().set(request.getTokenKey(), request.getTokenKey(), secondsUntilMidnight, TimeUnit.SECONDS);
+        }
     }
 
     private void setRedis(PaymentRequestDTO request) {
@@ -112,7 +158,6 @@ public class PayServiceImpl implements PayService {
     }
 
     // Hàm để set dữ liệu vào Redis
-    //TODO: tìm hiểu try catch resource
     private void setDataToRedis(String bankCode, String tokenKey, String jsonData) {
         try {
             redisTemplate.opsForHash().put(bankCode, tokenKey, jsonData);
@@ -125,7 +170,7 @@ public class PayServiceImpl implements PayService {
 
     private void checkPrivateKey(String bankCode, String privateKey) {
         boolean isValid = validatePrivateKey(bankCode, privateKey);
-        if (!isValid){
+        if (!isValid) {
             log.info("Error code 02: PrivateKey does not belong to bankCode");
             throw new BankException(BankResponseCode.BANK_CODE_ERROR, "Invalid privateKey for bankCode");
         }
@@ -152,9 +197,16 @@ public class PayServiceImpl implements PayService {
         } else { // debitAmount lớn hơn realAmount
             if (request.getPromotionCode() == null || request.getPromotionCode().isEmpty()) {
                 log.info("Error code 01: Không có mã voucher, mặc dù số tiền đã giảm.");
-                throw new BankException(BankResponseCode.FIELD_ERROR,"Không có mã voucher, mặc dù số tiền đã giảm.");
+                throw new BankException(BankResponseCode.FIELD_ERROR, "Không có mã voucher, mặc dù số tiền đã giảm.");
             }
         }
+    }
+
+    // Hàm tính số giây còn lại từ hiện tại đến 0h ngày hôm sau
+    private long getSecondsUntilMidnight() {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime midnight = now.toLocalDate().plusDays(1).atStartOfDay();
+        return ChronoUnit.SECONDS.between(now, midnight);
     }
 
 
